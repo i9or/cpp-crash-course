@@ -15,13 +15,17 @@ struct ClockOfTheLongNow {
         return true;
     }
 
-    int get_year() {
+    int get_year() const {
         return year;
     }
 
 private:
     int year;
 };
+
+void add_year(ClockOfTheLongNow &clock) {
+    clock.set_year(clock.get_year() + 1);
+}
 
 struct College {
     char name[256];
@@ -55,6 +59,12 @@ int main() {
 
     College oxford[] = { "Magdalen", "Duffield", "Kellogg" };
     print_names(oxford, sizeof(oxford) / sizeof(College));
+
+    ClockOfTheLongNow other_clock{};
+    other_clock.set_year(2022);
+    printf("The year is %d.\n", other_clock.get_year());
+    add_year(other_clock);
+    printf("The year is %d.\n", other_clock.get_year());
 
     return 0;
 }
